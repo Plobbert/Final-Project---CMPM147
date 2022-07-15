@@ -1,237 +1,172 @@
 let flock;
+let verticalDistance, horizontalDistance, pureDistance, curveDistance, curveDistance2;
+let radiatingSquares = new Queue();
+let radiatingColors = new Queue();
+let red, green, blue;
+let timer = 60;
+let c;
+
+function Queue(array) {
+    this.array = [];
+    if (array) this.array = array;
+}
+
+// Add Get Buffer property to object
+// constructor which slices the array
+Queue.prototype.getBuffer = function () {
+    return this.array.slice();
+}
+
+// Add isEmpty properties to object constructor
+// which returns the length of the array
+Queue.prototype.isEmpty = function () {
+    return this.array.length == 0;
+}
+
+Queue.prototype.length = function () {
+    return this.array.length;
+}
+
+Queue.prototype.getValue = function (i) {
+    return this.array[i];
+}
+
+Queue.prototype.updateValue = function (i) {
+    this.array[i] += 5;
+    return this.array[i];
+}
+
+// Add Push property to object constructor
+// which push elements to the array
+Queue.prototype.enqueue = function (value) {
+    this.array.push(value);
+}
+
+Queue.prototype.dequeue = function () {
+    return this.array.shift();
+}
 
 function setup() {
-  createCanvas(640, 360);
-  createP("Drag the mouse to generate new boids.");
-
-  flock = new Flock();
-  // Add an initial set of boids into the system
-  for (let i = 0; i < 10; i++) {
-    let b = new Boid(width / 2,height / 2);
-    flock.addBoid(b);
-  }
+    createCanvas(1080, 720);
+    red = 120;
+    blue = 120;
+    green = 120;
+  createP("Move the mouse to generate new patterns.");
 }
 
 function draw() {
-  background(51);
-  flock.run();
-}
-
-// Add a new boid into the System
-function mouseDragged() {
-  flock.addBoid(new Boid(mouseX, mouseY));
-}
-
-// The Nature of Code
-// Daniel Shiffman
-// http://natureofcode.com
-
-// Flock object
-// Does very little, simply manages the array of all the boids
-
-function Flock() {
-  // An array for all the boids
-  this.boids = []; // Initialize the array
-}
-
-Flock.prototype.run = function() {
-  for (let i = 0; i < this.boids.length; i++) {
-    this.boids[i].run(this.boids);  // Passing the entire list of boids to each boid individually
-  }
-}
-
-Flock.prototype.addBoid = function(b) {
-  this.boids.push(b);
-}
-
-// The Nature of Code
-// Daniel Shiffman
-// http://natureofcode.com
-
-// Boid class
-// Methods for Separation, Cohesion, Alignment added
-
-function Boid(x, y) {
-  this.acceleration = createVector(0, 0);
-  this.velocity = createVector(random(-1, 1), random(-1, 1));
-  this.position = createVector(x, y);
-  this.r = 3.0;
-  this.maxspeed = 3;    // Maximum speed
-  this.maxforce = 0.05; // Maximum steering force
-}
-
-Boid.prototype.run = function(boids) {
-  this.flock(boids);
-  this.update();
-  // this.borders();
-  this.render();
-}
-
-Boid.prototype.applyForce = function(force) {
-  // We could add mass here if we want A = F / M
-  this.acceleration.add(force);
-}
-
-// We accumulate a new acceleration each time based on three rules
-Boid.prototype.flock = function(boids) {
-  let sep = this.separate(boids);   // Separation
-  let ali = this.align(boids);      // Alignment
-  let coh = this.cohesion(boids);   // Cohesion
-  let avo = this.avoid(boids);      // Avoid walls
-  // Arbitrarily weight these forces
-  sep.mult(10.0);
-  ali.mult(2.0);
-  coh.mult(1.0);
-  avo.mult(3.0);
-  // Add the force vectors to acceleration
-  this.applyForce(sep);
-  this.applyForce(ali);
-  this.applyForce(coh);
-  this.applyForce(avo);
-}
-
-// Method to update location
-Boid.prototype.update = function() {
-  // Update velocity
-  this.velocity.add(this.acceleration);
-  // Limit speed
-  this.velocity.limit(this.maxspeed);
-  this.position.add(this.velocity);
-  // Reset accelertion to 0 each cycle
-  this.acceleration.mult(0);
-}
-
-// A method that calculates and applies a steering force towards a target
-// STEER = DESIRED MINUS VELOCITY
-Boid.prototype.seek = function(target) {
-  let desired = p5.Vector.sub(target,this.position);  // A vector pointing from the location to the target
-  // Normalize desired and scale to maximum speed
-  desired.normalize();
-  desired.mult(this.maxspeed);
-  // Steering = Desired minus Velocity
-  let steer = p5.Vector.sub(desired,this.velocity);
-  steer.limit(this.maxforce);  // Limit to maximum steering force
-  return steer;
-}
-
-Boid.prototype.render = function() {
-  // Draw a triangle rotated in the direction of velocity
-  let theta = this.velocity.heading() + radians(90);
-  fill(127);
-  stroke(200);
-  push();
-  translate(this.position.x, this.position.y);
-  rotate(theta);
-  beginShape();
-  vertex(0, -this.r * 2);
-  vertex(-this.r, this.r * 2);
-  vertex(this.r, this.r * 2);
-  endShape(CLOSE);
-  pop();
-}
-
-// Wraparound
-Boid.prototype.borders = function() {
-  if (this.position.x < -this.r)  this.position.x = width + this.r;
-  if (this.position.y < -this.r)  this.position.y = height + this.r;
-  if (this.position.x > width + this.r) this.position.x = -this.r;
-  if (this.position.y > height + this.r) this.position.y = -this.r;
-}
-
-// Separation
-// Method checks for nearby boids and steers away
-Boid.prototype.separate = function(boids) {
-  let desiredseparation = 25.0;
-  let steer = createVector(0, 0);
-  let count = 0;
-  // For every boid in the system, check if it's too close
-  for (let i = 0; i < boids.length; i++) {
-    let d = p5.Vector.dist(this.position,boids[i].position);
-    // If the distance is greater than 0 and less than an arbitrary amount (0 when you are yourself)
-    if ((d > 0) && (d < desiredseparation)) {
-      // Calculate vector pointing away from neighbor
-      let diff = p5.Vector.sub(this.position, boids[i].position);
-      diff.normalize();
-      diff.div(d);        // Weight by distance
-      steer.add(diff);
-      count++;            // Keep track of how many
+    for (let i = 0; i < radiatingSquares.length(); i++) {
+        radiatingSquares.updateValue(i);
     }
-  }
-  // Average -- divide by how many
-  if (count > 0) {
-    steer.div(count);
-  }
-
-  // As long as the vector is greater than 0
-  if (steer.mag() > 0) {
-    // Implement Reynolds: Steering = Desired - Velocity
-    steer.normalize();
-    steer.mult(this.maxspeed);
-    steer.sub(this.velocity);
-    steer.limit(this.maxforce);
-  }
-  return steer;
-}
-
-// Alignment
-// For every nearby boid in the system, calculate the average velocity
-Boid.prototype.align = function(boids) {
-  let neighbordist = 50;
-  let sum = createVector(0,0);
-  let count = 0;
-  for (let i = 0; i < boids.length; i++) {
-    let d = p5.Vector.dist(this.position,boids[i].position);
-    if ((d > 0) && (d < neighbordist)) {
-      sum.add(boids[i].velocity);
-      count++;
+    red += random(-10, 10);
+    green += random(-10, 10);
+    blue += random(-10, 10);
+    if (red < 0) {
+        red = 255;
+    } else if (red > 255) {
+        red = 0;
     }
-  }
-  if (count > 0) {
-    sum.div(count);
-    sum.normalize();
-    sum.mult(this.maxspeed);
-    let steer = p5.Vector.sub(sum, this.velocity);
-    steer.limit(this.maxforce);
-    return steer;
-  } else {
-    return createVector(0, 0);
-  }
-}
-
-// Cohesion
-// For the average location (i.e. center) of all nearby boids, calculate steering vector towards that location
-Boid.prototype.cohesion = function(boids) {
-  let neighbordist = 50;
-  let sum = createVector(0, 0);   // Start with empty vector to accumulate all locations
-  let count = 0;
-  for (let i = 0; i < boids.length; i++) {
-    let d = p5.Vector.dist(this.position,boids[i].position);
-    if ((d > 0) && (d < neighbordist)) {
-      sum.add(boids[i].position); // Add location
-      count++;
+    if (green < 0) {
+        green = 255;
+    } else if (green > 255) {
+        green = 0;
     }
-  }
-  if (count > 0) {
-    sum.div(count);
-    return this.seek(sum);  // Steer towards the location
-  } else {
-    return createVector(0, 0);
-  }
+    if (blue < 0) {
+        blue = 255;
+    } else if (blue > 255) {
+        blue = 0;
+    }
+    c = color(red, green, blue);
+    timer--;
+    background(40, 40, 40);
+    curveDistance = 2000;
+    curveDistance2 = 2000;
+    verticalDistance = mouseY - height / 2;
+    horizontalDistance = mouseX - width / 2;
+    pureDistance = sqrt(pow(mouseX - width / 2, 2) + pow(mouseY - height / 2, 2));
+    angleMode(DEGREES);
+    push();
+    translate(width / 2, height / 2);
+        rotate(verticalDistance);
+        rotate(horizontalDistance);
+    noFill();
+    stroke(c);
+    strokeWeight(5);
+    square(-pureDistance / 2, -pureDistance / 2, pureDistance, 20);
+    console.log(radiatingSquares);
+    if (timer == 0) {
+        radiatingSquares.enqueue(pureDistance);
+        radiatingColors.enqueue(c);
+        timer = 60;
+    }
+    generateRadiation();
+    pop();
+    calculateDistanceFromCurve();
+    generateStar(-300, 200);
+    generateStar(-300, -200);
+    generateStar(300, 200);
+    generateStar(300, -200);
 }
 
-Boid.prototype.avoid = function(boids) {
-  let steer = createVector(0, 0);
-  if (this.position.x <= 0) {
-    steer.add(createVector(1, 0));
-  }
-  if (this.position.x > 640) { // width of canvas
-    steer.add(createVector(-1, 0));
-  }
-  if (this.position.y <= 0) {
-    steer.add(createVector(0, 1));
-  }
-  if (this.position.y > 360) { // height of canvas
-    steer.add(createVector(0, -1));
-  }
-  return steer;
+function generateRadiation() {
+    if (radiatingSquares.getValue(0) > 1000) {
+        radiatingSquares.dequeue();
+        radiatingColors.dequeue();
+    }
+    for (let i = 0; i < radiatingSquares.length(); i++) {
+        stroke(radiatingColors.getValue(i));
+        square(-radiatingSquares.getValue(i) / 2, -radiatingSquares.getValue(i) / 2, radiatingSquares.getValue(i), 20);
+    }
+}
+
+function calculateDistanceFromCurve() {
+    for (let i = 0; i < width; i++) {
+        let distance = dist(mouseX, mouseY, i, curveFunction(i));
+        push();
+        beginShape();
+        vertex(i, curveFunction(i));
+        endShape(CLOSE);
+        pop();
+        if (distance < curveDistance) {
+            curveDistance = distance;
+        }
+    }
+    for (let i = 0; i < width; i++) {
+        let distance = dist(mouseX, mouseY, i, height - curveFunction(i));
+        push();
+        beginShape();
+        vertex(i, height - curveFunction(i));
+        endShape(CLOSE);
+        pop();
+        if (distance < curveDistance2) {
+            curveDistance2 = distance;
+        }
+    }
+}
+
+function curveFunction(x) {
+    let y = x/width * height;
+    return y;
+}
+
+function generateStar(x, y) {
+    push();
+    translate(width/2 + x, height/2 + y);
+    rotate(curveDistance2);
+    noFill();
+    stroke(0, 255, 255);
+    strokeWeight(5);
+    beginShape();
+    vertex(- (.3 * curveDistance), - (.5 * curveDistance));
+    vertex(0, (-1.1 * curveDistance));
+    vertex((.3 * curveDistance), - (.5 * curveDistance));
+    vertex((1.0 * curveDistance), - (.5 * curveDistance));
+    vertex((.5 * curveDistance), (0 * curveDistance));
+    vertex((.7 * curveDistance), (.75 * curveDistance));
+    vertex(0, (.25 * curveDistance));
+    vertex(- (.7 * curveDistance), (.75 * curveDistance));
+    vertex(- (.5 * curveDistance), (0 * curveDistance));
+    vertex(- (1.0 * curveDistance), - (.5 * curveDistance));
+    endShape(CLOSE);
+    pop();
 }
