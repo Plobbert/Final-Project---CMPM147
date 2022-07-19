@@ -45,13 +45,19 @@ Queue.prototype.enqueue = function (value) {
 Queue.prototype.dequeue = function () {
     return this.array.shift();
 }
+let mySound;
+function preload() {
+    mySound = loadSound('./assets/crab.mp3');
+}
 
 function setup() {
+    
     createCanvas(1080, 720);
     red = 120;
     blue = 120;
     green = 120;
-  createP("Move the mouse to generate new patterns.");
+    createP("Move the mouse to generate new patterns.");
+    mySound.play();
 }
 
 function draw() {
