@@ -76,8 +76,7 @@ function draw() {
         radiatingSquares.updateValue(i);
     }
     console.log(strokeSize);
-    if (strokeSize > 7.5) {
-        console.log("BIG BOI");
+    if (strokeSize > 2.0) {
         generateBackground();
     }
     red += random(-10, 10);
@@ -130,7 +129,8 @@ function draw() {
 }
 
 function generateBackground() {
-    if (random(0, 10) < 8) {
+    console.log("DID THIS WORK?");
+    if (random(0, 10) > 8) {
         let xToDraw = new Queue();
         xToDraw.enqueue(0);
         wiggles.enqueue(xToDraw);
