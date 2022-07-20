@@ -63,7 +63,7 @@ function setup() {
 
 function myFunction () {
     if (!mySound.isPlaying()) {
-        mySound.start(0);
+        mySound.play();
     }
     //or another function to use audio source
 }
