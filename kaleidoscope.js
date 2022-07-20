@@ -61,7 +61,7 @@ function setup() {
 }
 
 play.onclick = function () {
-    mySound.play();
+    mySound.start(0);
     //or another function to use audio source
 }
 
