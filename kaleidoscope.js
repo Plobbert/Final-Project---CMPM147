@@ -60,7 +60,7 @@ function setup() {
     createP("Move the mouse to generate new patterns.");
 }
 
-play.onclick = function () {
+function myFunction () {
     if (!mySound.isPlaying()) {
         mySound.start(0);
     }
