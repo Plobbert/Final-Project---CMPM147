@@ -6,6 +6,7 @@ let red, green, blue;
 let timer = 60;
 let c;
 let strokeSize = 1;
+let amp;
 
 function Queue(array) {
     this.array = [];
@@ -55,14 +56,19 @@ function setup() {
     red = 120;
     blue = 120;
     green = 120;
+    amp = new p5.Amplitude();
     createP("Move the mouse to generate new patterns.");
 }
 
-function myFunction() {
-    mySound.play();
+play.onclick = function () {
+    if (!mySound.isPlaying()) {
+        mySound.start(0);
+    }
+    //or another function to use audio source
 }
 
 function draw() {
+    strokeSize = amp.getLevel() * 10;
     for (let i = 0; i < radiatingSquares.length(); i++) {
         radiatingSquares.updateValue(i);
     }
