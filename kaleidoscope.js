@@ -7,6 +7,7 @@ let timer = 60;
 let c;
 let strokeSize = 1;
 play = document.getElementsByClassName("play");
+console.log('bruh');
 
 function Queue(array) {
     this.array = [];
