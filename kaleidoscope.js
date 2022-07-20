@@ -7,6 +7,7 @@ let timer = 60;
 let c;
 let strokeSize = 1;
 let amp;
+console.log('test');
 
 function Queue(array) {
     this.array = [];
