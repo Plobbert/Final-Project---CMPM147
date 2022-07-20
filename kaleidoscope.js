@@ -6,8 +6,6 @@ let red, green, blue;
 let timer = 60;
 let c;
 let strokeSize = 1;
-//play = document.getElementsByClassName("play");
-console.log('bruh');
 
 function Queue(array) {
     this.array = [];
@@ -54,21 +52,14 @@ function preload() {
 }
 function setup() {
     createCanvas(1080, 720);
-    console.log('there is no changeGray here');
     red = 120;
     blue = 120;
     green = 120;
     createP("Move the mouse to generate new patterns.");
 }
 
-/*play.onclick = function () {
-    console.log('test');
-    mySound.start(0);
-    //or another function to use audio source
-}*/
-
 function myFunction() {
-    mySound.start(0);
+    mySound.play();
 }
 
 function draw() {
