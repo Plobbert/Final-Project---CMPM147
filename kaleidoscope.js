@@ -6,6 +6,7 @@ let red, green, blue;
 let timer = 60;
 let c;
 let strokeSize = 1;
+play = document.getElementByClassName("play");
 
 function Queue(array) {
     this.array = [];
@@ -60,7 +61,7 @@ function setup() {
 }
 
 play.onclick = function () {
-    mySound.play();
+    mySound.start(0);
     //or another function to use audio source
 }
 
