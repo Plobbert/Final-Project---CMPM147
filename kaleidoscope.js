@@ -8,6 +8,7 @@ let timer = 60;
 let c;
 let strokeSize = 1;
 let amp;
+console.log('test');
 
 function Queue(array) {
     this.array = [];
@@ -63,7 +64,7 @@ function setup() {
 
 function myFunction () {
     if (!mySound.isPlaying()) {
-        mySound.start(0);
+        mySound.play();
     }
     //or another function to use audio source
 }
