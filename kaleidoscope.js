@@ -75,6 +75,7 @@ function draw() {
         radiatingSquares.updateValue(i);
     }
     if (strokeSize > 7.5) {
+        console.log("BIG BOI");
         generateBackground();
     }
     red += random(-10, 10);
