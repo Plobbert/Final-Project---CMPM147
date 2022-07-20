@@ -52,14 +52,16 @@ function preload() {
 }
 
 function setup() {
-    mySound.play();
-    strokeSize = new p5.Amplitude();
-    mySound.resume();
-    createCanvas(1080, 720);
+    let can = createCanvas(1080, 720);
+    can.mouseOver(playSong);
     red = 120;
     blue = 120;
     green = 120;
     createP("Move the mouse to generate new patterns.");
+}
+
+function playSong() {
+    mySound.play();
 }
 
 function draw() {
@@ -101,7 +103,6 @@ function draw() {
     stroke(c);
     strokeWeight(5 * strokeSize);
     square(-pureDistance / 2, -pureDistance / 2, pureDistance, 20);
-    console.log(radiatingSquares);
     if (timer == 0) {
         radiatingSquares.enqueue(pureDistance);
         radiatingColors.enqueue(c);
