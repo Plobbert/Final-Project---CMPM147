@@ -59,6 +59,7 @@ function setup() {
     blue = 120;
     green = 120;
     amp = new p5.Amplitude();
+    console.log("test1");
     createP("Move the mouse to generate new patterns.");
 }
 
