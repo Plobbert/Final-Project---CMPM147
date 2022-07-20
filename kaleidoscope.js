@@ -53,6 +53,7 @@ function preload() {
 let cnv;
 function setup() {
     cnv = createCanvas(1080, 720);
+    console.log('there is no changeGray here');
     red = 120;
     blue = 120;
     green = 120;
