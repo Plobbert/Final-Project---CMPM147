@@ -50,16 +50,17 @@ let mySound;
 function preload() {
     mySound = loadSound('./assets/crab.mp3');
 }
-
+let cnv;
 function setup() {
-    createCanvas(1080, 720);
+    cnv = createCanvas(1080, 720);
+    cnv.mouseClicked(changeGray);
     red = 120;
     blue = 120;
     green = 120;
     createP("Move the mouse to generate new patterns.");
 }
 
-play.onclick = function () {
+function mouseClicked() {
     mySound.play();
 }
 
