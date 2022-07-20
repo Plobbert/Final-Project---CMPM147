@@ -2,6 +2,7 @@ let flock;
 let verticalDistance, horizontalDistance, pureDistance, curveDistance, curveDistance2;
 let radiatingSquares = new Queue();
 let radiatingColors = new Queue();
+let wiggles = new Queue();
 let red, green, blue;
 let timer = 60;
 let c;
@@ -72,6 +73,9 @@ function draw() {
     for (let i = 0; i < radiatingSquares.length(); i++) {
         radiatingSquares.updateValue(i);
     }
+    if (strokeSize > 7.5) {
+        generateBackground();
+    }
     red += random(-10, 10);
     green += random(-10, 10);
     blue += random(-10, 10);
@@ -119,6 +123,52 @@ function draw() {
     generateStar(-300, -200);
     generateStar(300, 200);
     generateStar(300, -200);
+}
+
+function generateBackground() {
+    if (random(0, 10) < 8) {
+        let xToDraw = new Queue();
+        xToDraw.enqueue(0);
+        wiggles.enqueue(xToDraw);
+    }
+    for (let i = 0; i < wiggles.length(); i++) {
+        if (wiggles[i].length == 50) {
+            for (let j = 0; j < 50; j++) {
+                push();
+                let rotation = random(0, 360);
+                rotate(rotation);
+                calculateTranslation(rotation);
+                beginShape();
+                vertex(j, sin(j));
+                endShape(CLOSE);
+                pop();
+                wiggles[i].dequeue();
+                wiggles[i].enqueue(wiggles[0] + 1);
+            }
+        } else {
+            push();
+            let rotation = random(0, 360);
+            rotate(rotation);
+            calculateTranslation(rotation);
+            beginShape();
+            vertex(j, sin(j));
+            endShape(CLOSE);
+            pop();
+            wiggles[i].enqueue(wiggles[0] + 1);
+        }
+    }
+}
+
+function calculateRotation(angle) {
+    if (angle < 90) {
+        translate(random(-width / 2, width / 2), random(height / 2, height + height / 2));
+    } else if (angle < 180) {
+        translate(random(width / 2, width + width / 2), random(height / 2, height + height / 2));
+    } else if (angle < 270) {
+        translate(random(width / 2, width + width / 2), random(-height / 2, height / 2));
+    } else {
+        translate(random(-width / 2, width / 2), random(-height / 2, height / 2));
+    }
 }
 
 function generateRadiation() {
