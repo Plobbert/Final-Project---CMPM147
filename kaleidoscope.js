@@ -52,15 +52,14 @@ function preload() {
 }
 
 function setup() {
-    let can = createCanvas(1080, 720);
-    can.mouseOver(playSong);
+    createCanvas(1080, 720);
     red = 120;
     blue = 120;
     green = 120;
     createP("Move the mouse to generate new patterns.");
 }
 
-function playSong() {
+play.onclick = function () {
     mySound.play();
 }
 
