@@ -54,6 +54,7 @@ function preload() {
 function setup() {
     mySound.play();
     strokeSize = new p5.Amplitude();
+    getAudioContext().resume();
     createCanvas(1080, 720);
     red = 120;
     blue = 120;
