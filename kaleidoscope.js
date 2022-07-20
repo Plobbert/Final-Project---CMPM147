@@ -75,6 +75,7 @@ function draw() {
     for (let i = 0; i < radiatingSquares.length(); i++) {
         radiatingSquares.updateValue(i);
     }
+    console.log(strokeSize);
     if (strokeSize > 7.5) {
         console.log("BIG BOI");
         generateBackground();
