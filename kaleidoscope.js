@@ -6,7 +6,7 @@ let red, green, blue;
 let timer = 60;
 let c;
 let strokeSize = 1;
-play = document.getElementByClassName("play");
+play = document.getElementsByClassName("play");
 
 function Queue(array) {
     this.array = [];
@@ -51,9 +51,8 @@ let mySound;
 function preload() {
     mySound = loadSound('./assets/crab.mp3');
 }
-let cnv;
 function setup() {
-    cnv = createCanvas(1080, 720);
+    createCanvas(1080, 720);
     console.log('there is no changeGray here');
     red = 120;
     blue = 120;
