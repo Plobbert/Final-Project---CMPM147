@@ -52,16 +52,15 @@ function preload() {
 }
 
 function setup() {
-    
     createCanvas(1080, 720);
     red = 120;
     blue = 120;
     green = 120;
     createP("Move the mouse to generate new patterns.");
-    mySound.play();
 }
 
 function draw() {
+    mySound.play();
     strokeSize = mySound.Amplitude;
     for (let i = 0; i < radiatingSquares.length(); i++) {
         radiatingSquares.updateValue(i);
