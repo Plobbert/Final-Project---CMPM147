@@ -136,7 +136,7 @@ function generateBackground() {
         wiggles.enqueue(xToDraw);
     }
     for (let i = 0; i < wiggles.length(); i++) {
-        if (wiggles[i].length == 50) {
+        if (wiggles[i].length() == 50) {
             for (let j = 0; j < 50; j++) {
                 push();
                 let rotation = random(0, 360);
