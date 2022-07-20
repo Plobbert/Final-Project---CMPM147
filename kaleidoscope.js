@@ -53,15 +53,15 @@ function preload() {
 let cnv;
 function setup() {
     cnv = createCanvas(1080, 720);
-    cnv.mouseClicked(changeGray);
     red = 120;
     blue = 120;
     green = 120;
     createP("Move the mouse to generate new patterns.");
 }
 
-function mouseClicked() {
+play.onclick = function () {
     mySound.play();
+    //or another function to use audio source
 }
 
 function draw() {
