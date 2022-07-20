@@ -5,6 +5,7 @@ let radiatingColors = new Queue();
 let red, green, blue;
 let timer = 60;
 let c;
+let strokeSize = 1;
 
 function Queue(array) {
     this.array = [];
@@ -61,6 +62,7 @@ function setup() {
 }
 
 function draw() {
+    strokeSize = mySound.Amplitude;
     for (let i = 0; i < radiatingSquares.length(); i++) {
         radiatingSquares.updateValue(i);
     }
@@ -97,7 +99,7 @@ function draw() {
         rotate(horizontalDistance);
     noFill();
     stroke(c);
-    strokeWeight(5);
+    strokeWeight(5 * strokeSize);
     square(-pureDistance / 2, -pureDistance / 2, pureDistance, 20);
     console.log(radiatingSquares);
     if (timer == 0) {
@@ -161,7 +163,7 @@ function generateStar(x, y) {
     rotate(curveDistance2);
     noFill();
     stroke(0, 255, 255);
-    strokeWeight(5);
+    strokeWeight(5 * strokeSize);
     beginShape();
     vertex(- (.3 * curveDistance), - (.5 * curveDistance));
     vertex(0, (-1.1 * curveDistance));
