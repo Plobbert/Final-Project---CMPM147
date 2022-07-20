@@ -53,6 +53,7 @@ function preload() {
 
 function setup() {
     mySound.play();
+    strokeSize = new p5.Amplitude();
     createCanvas(1080, 720);
     red = 120;
     blue = 120;
@@ -61,7 +62,6 @@ function setup() {
 }
 
 function draw() {
-    strokeSize = mySound.Amplitude;
     for (let i = 0; i < radiatingSquares.length(); i++) {
         radiatingSquares.updateValue(i);
     }
