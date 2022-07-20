@@ -160,7 +160,7 @@ function generateBackground() {
     }
 }
 
-function calculateRotation(angle) {
+function calculateTranslation(angle) {
     if (angle < 90) {
         translate(random(-width / 2, width / 2), random(height / 2, height + height / 2));
     } else if (angle < 180) {
