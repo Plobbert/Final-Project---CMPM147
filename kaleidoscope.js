@@ -131,17 +131,17 @@ function draw() {
 
 function manageBackground() {
     for (let i = 0; i < wiggles.length(); i++) {
-        console.log(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1));
         if (wiggles.getValue(i).length() == 50) {
             push();
             rotate(wiggleAngles.getValue(i));
             calculateTranslation(wiggleAngles.getValue(i));
+            stroke(255, 0, 0);
+            strokeWeight(strokeSize * 5);
+            beginShape();
             for (let j = 0; j < 50; j++) {
-                beginShape();
-                vertex(wiggles.getValue(i).getValue(j), sin(wiggles.getValue(i).getValue(j)));
-                console.log('MAIN WIGGLE ' + wiggleAngles.getValue(i) + ' X ' + wiggles.getValue(i).getValue(j) + ' Y ' + sin(wiggles.getValue(i).getValue(j)));
-                endShape();
+                vertex(wiggles.getValue(i).getValue(j), 100 * sin(.100 * wiggles.getValue(i).getValue(j)));
             }
+            endShape();
             pop();
             wiggles.getValue(i).dequeue();
             wiggles.getValue(i).enqueue(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1) + 1);
@@ -153,8 +153,7 @@ function manageBackground() {
             strokeWeight(strokeSize * 5);
             beginShape();
             for (let j = 0; j < wiggles.getValue(i).length(); j++) {
-                console.log('WIGGLE ' + wiggleAngles.getValue(i) + ' X ' + wiggles.getValue(i).getValue(j) + ' Y ' + sin(wiggles.getValue(i).getValue(j)));
-                vertex(wiggles.getValue(i).getValue(j), sin(wiggles.getValue(i).getValue(j)));
+                vertex(wiggles.getValue(i).getValue(j), 100 * sin(.100 * wiggles.getValue(i).getValue(j)));
             }
             endShape();
             pop();
@@ -168,8 +167,8 @@ function manageBackground() {
 }
 
 function generateBackground() {
-    console.log('clambo jambo');
-    if (random(0, 10) > 9) {
+    console.log('woop');
+    if (random(0, 10) > 9.2) {
         let xToDraw = new Queue();
         xToDraw.enqueue(0);
         wiggles.enqueue(xToDraw);
