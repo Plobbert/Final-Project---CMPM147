@@ -139,6 +139,7 @@ function manageBackground() {
             for (let j = 0; j < 50; j++) {
                 beginShape();
                 vertex(wiggles.getValue(i).getValue(j), sin(wiggles.getValue(i).getValue(j)));
+                console.log('MAIN WIGGLE ' + wiggleAngles.getValue(i) + ' X ' + wiggles.getValue(i).getValue(j) + ' Y ' + sin(wiggles.getValue(i).getValue(j)));
                 endShape();
             }
             pop();
