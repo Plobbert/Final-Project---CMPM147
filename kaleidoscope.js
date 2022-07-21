@@ -132,10 +132,6 @@ function draw() {
 function manageBackground() {
     for (let i = 0; i < wiggles.length(); i++) {
         console.log(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1));
-        if (wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1) > 2000) {
-            wiggles.dequeue();
-            wiggleAngles.dequeue();
-        }
         if (wiggles.getValue(i).length() == 50) {
             push();
             rotate(wiggleAngles.getValue(i));
@@ -143,7 +139,7 @@ function manageBackground() {
             for (let j = 0; j < 50; j++) {
                 beginShape();
                 vertex(wiggles.getValue(i).getValue(j), sin(wiggles.getValue(i).getValue(j)));
-                endShape(CLOSE);
+                endShape();
             }
             pop();
             wiggles.getValue(i).dequeue();
@@ -152,21 +148,26 @@ function manageBackground() {
             push();
             rotate(wiggleAngles.getValue(i));
             calculateTranslation(wiggleAngles.getValue(i));
-            stroke(120, 120, 120);
+            console.log('WIGGLE ' + wiggleAngles.getValue(i) + ' X ' + wiggles.getValue(i).getValue(j) + ' Y ' + sin(wiggles.getValue(i).getValue(j)));
+            stroke(255, 0, 0);
             strokeWeight(strokeSize * 5);
             beginShape();
             for (let j = 0; j < wiggles.getValue(i).length(); j++) {
                 vertex(wiggles.getValue(i).getValue(j), sin(wiggles.getValue(i).getValue(j)));
             }
-            endShape(CLOSE);
+            endShape();
             pop();
             wiggles.getValue(i).enqueue(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1) + 1);
+        }
+        if (wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1) > 2000) {
+            wiggles.dequeue();
+            wiggleAngles.dequeue();
         }
     }
 }
 
 function generateBackground() {
-    console.log('clumbo jumbo');
+    console.log('clambo jambo');
     if (random(0, 10) > 9) {
         let xToDraw = new Queue();
         xToDraw.enqueue(0);
@@ -178,7 +179,7 @@ function generateBackground() {
     strokeWeight(10);
     stroke(255, 0, 0);
     beginShape();
-    vertex(random(0, width), random(0, height));
+    vertex(width/2, height/2);
     endShape(CLOSE);
     pop();
 }
