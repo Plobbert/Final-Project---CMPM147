@@ -9,6 +9,7 @@ let timer = 60;
 let c;
 let strokeSize = 1;
 let amp;
+let currentShape = true;
 
 function Queue(array) {
     this.array = [];
