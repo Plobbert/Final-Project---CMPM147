@@ -133,24 +133,24 @@ function generateBackground() {
     if (random(0, 10) > 8) {
         let xToDraw = new Queue();
         xToDraw.enqueue(0);
-        console.log(xToDraw[0] + 'aap');
+        console.log(xToDraw.getValue(0) + 'aap');
         wiggles.enqueue(xToDraw);
-        console.log(wiggles[0] + ' oop');
+        console.log(wiggles.getValue(0) + ' oop');
     }
     for (let i = 0; i < wiggles.length(); i++) {
-        console.log(wiggles[i]);
-        if (wiggles[i].length() == 50) {
+        console.log(wiggles.getValue(i));
+        if (wiggles.getValue(i).length() == 50) {
             for (let j = 0; j < 50; j++) {
                 push();
                 let rotation = random(0, 360);
                 rotate(rotation);
                 calculateTranslation(rotation);
                 beginShape();
-                vertex(j, sin(j));
+                vertex(wiggles.getValue(i).getValue(j), sin(wiggles.getValue(i).getValue(j)));
                 endShape(CLOSE);
                 pop();
-                wiggles[i].dequeue();
-                wiggles[i].enqueue(wiggles[0] + 1);
+                wiggles.getValue(i).dequeue();
+                wiggles.getValue(i).enqueue(wiggles.getValue(0) + 1);
             }
         } else {
             push();
@@ -158,10 +158,10 @@ function generateBackground() {
             rotate(rotation);
             calculateTranslation(rotation);
             beginShape();
-            vertex(j, sin(j));
+            vertex(wiggles.getValue(i).getValue(j), sin(wiggles.getValue(i).getValue(j)));
             endShape(CLOSE);
             pop();
-            wiggles[i].enqueue(wiggles[0] + 1);
+            wiggles.getValue(i).enqueue(wiggles.getValue(0) + 1);
         }
     }
 }
