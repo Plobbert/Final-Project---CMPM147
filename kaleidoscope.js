@@ -142,7 +142,7 @@ function generateBackground() {
     endShape(CLOSE);
     pop();
     for (let i = 0; i < wiggles.length(); i++) {
-        console.log(wiggles.getValue(i).getValue(wiggles.getValue(i).length()));
+        console.log(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1));
         if (wiggles.getValue(i).length() == 50) {
             for (let j = 0; j < 50; j++) {
                 push();
@@ -154,7 +154,7 @@ function generateBackground() {
                 endShape(CLOSE);
                 pop();
                 wiggles.getValue(i).dequeue();
-                wiggles.getValue(i).enqueue(wiggles.getValue(i).getValue(wiggles.getValue(i).length()) + 1);
+                wiggles.getValue(i).enqueue(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1)+ 1);
             }
         } else {
             push();
@@ -169,7 +169,7 @@ function generateBackground() {
             }
             endShape(CLOSE);
             pop();
-            wiggles.getValue(i).enqueue(wiggles.getValue(i).getValue(wiggles.getValue(i).length()) + 1);
+            wiggles.getValue(i).enqueue(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1) + 1);
         }
     }
 }
