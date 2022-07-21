@@ -144,7 +144,7 @@ function manageBackground() {
             endShape();
             pop();
             wiggles.getValue(i).dequeue();
-            wiggles.getValue(i).enqueue(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1) + 1);
+            wiggles.getValue(i).enqueue(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1) + 5);
         } else {
             push();
             calculateTranslation(wiggleAngles.getValue(i));
@@ -158,7 +158,7 @@ function manageBackground() {
             }
             endShape();
             pop();
-            wiggles.getValue(i).enqueue(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1) + 1);
+            wiggles.getValue(i).enqueue(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1) + 5);
         }
         if (wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1) > 2000) {
             wiggles.dequeue();
@@ -186,15 +186,14 @@ function generateBackground() {
 }
 
 function calculateTranslation(angle) {
-    console.log('changed');
     if (angle < 90) {
-        translate(-width/2, -height / 2);
+        translate(0, 0);
     } else if (angle < 180) {
-        translate(width + width / 2, -height / 2);
+        translate(width, 0);
     } else if (angle < 270) {
-        translate(width + width / 2, height + height / 2);
+        translate(width, height);
     } else {
-        translate(-width / 2, height + height / 2);
+        translate(0, height);
     }
 }
 
