@@ -4,11 +4,13 @@ let radiatingSquares = new Queue();
 let radiatingColors = new Queue();
 let wiggles = new Queue();
 let wiggleAngles = new Queue();
+let recentAmp = new Queue();
 let red, green, blue;
 let timer = 60;
 let c;
 let strokeSize = 1;
 let amp;
+let ampAvg;
 let currentShape = true;
 
 function Queue(array) {
@@ -72,6 +74,10 @@ function myFunction () {
 
 function draw() {
     strokeSize = amp.getLevel() * 10;
+    recentAmp.enqueue(strokeSize);
+    if (recentAmp.length() == 10) {
+        recentAmp.dequeue();
+    }
     for (let i = 0; i < radiatingSquares.length(); i++) {
         radiatingSquares.updateValue(i);
     }
@@ -130,11 +136,15 @@ function draw() {
         generateCrab(300, 200);
         generateCrab(300, -200);
     }
-    if (strokeSize > 2.0) {
+    for (let i = 0; i < recentAmp.length(); i++) {
+        ampAvg += recentAmp.getValue(i);
+    }
+    ampAvg = ampAvg / recentAmp.length();
+    if (ampAvg > 2.0) {
         currentShape = false;
         generateBackground();
     }
-    if (strokeSize < 1.0) {
+    if (ampAvg < 1.5) {
         currentShape = true;
     }
 }
