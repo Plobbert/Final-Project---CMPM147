@@ -133,6 +133,7 @@ function generateBackground() {
     if (random(0, 10) > 8) {
         let xToDraw = new Queue();
         xToDraw.enqueue(0);
+        console.log(xToDraw + 'aap');
         wiggles.enqueue(xToDraw);
         console.log(wiggles[0] + ' oop');
     }
