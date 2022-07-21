@@ -71,13 +71,6 @@ function myFunction () {
 }
 
 function draw() {
-    if (curveDistance < 5) {
-        if (currentShape == true) {
-            currentShape = false;
-        } else {
-            currentShape = true;
-        }
-    }
     strokeSize = amp.getLevel() * 10;
     for (let i = 0; i < radiatingSquares.length(); i++) {
         radiatingSquares.updateValue(i);
@@ -138,7 +131,11 @@ function draw() {
         generateCrab(300, -200);
     }
     if (strokeSize > 2.0) {
+        currentShape = false;
         generateBackground();
+    }
+    if (strokeSize < 1.0) {
+        currentShape = true;
     }
 }
 
