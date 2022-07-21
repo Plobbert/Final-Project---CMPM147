@@ -143,6 +143,9 @@ function generateBackground() {
     pop();
     for (let i = 0; i < wiggles.length(); i++) {
         console.log(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1));
+        if (wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1) > 2000) {
+            wiggles.dequeue();
+        }
         if (wiggles.getValue(i).length() == 50) {
             for (let j = 0; j < 50; j++) {
                 push();
