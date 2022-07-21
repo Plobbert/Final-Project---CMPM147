@@ -129,16 +129,13 @@ function draw() {
 }
 
 function generateBackground() {
-    console.log("DID THIS WORK?");
     if (random(0, 10) > 8) {
         let xToDraw = new Queue();
         xToDraw.enqueue(0);
-        console.log(xToDraw.getValue(0) + 'aap');
         wiggles.enqueue(xToDraw);
-        console.log(wiggles.getValue(0) + ' oop');
     }
     for (let i = 0; i < wiggles.length(); i++) {
-        console.log(wiggles.getValue(i));
+        console.log(wiggles.getValue(i).getValue(0));
         if (wiggles.getValue(i).length() == 50) {
             for (let j = 0; j < 50; j++) {
                 push();
@@ -150,7 +147,7 @@ function generateBackground() {
                 endShape(CLOSE);
                 pop();
                 wiggles.getValue(i).dequeue();
-                wiggles.getValue(i).enqueue(wiggles.getValue(0) + 1);
+                wiggles.getValue(i).enqueue(wiggles.getValue(i).getValue(wiggles.getValue(i).length()) + 1);
             }
         } else {
             push();
@@ -165,7 +162,7 @@ function generateBackground() {
             }
             endShape(CLOSE);
             pop();
-            wiggles.getValue(i).enqueue(wiggles.getValue(0) + 1);
+            wiggles.getValue(i).enqueue(wiggles.getValue(i).getValue(wiggles.getValue(i).length()) + 1);
         }
     }
 }
