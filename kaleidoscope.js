@@ -10,7 +10,7 @@ let timer = 60;
 let c;
 let strokeSize = 1;
 let amp;
-let ampAvg;
+let ampAvg = 0;
 let currentShape = true;
 
 function Queue(array) {
@@ -136,12 +136,13 @@ function draw() {
         generateCrab(300, 200);
         generateCrab(300, -200);
     }
+    ampAvg = 0;
     for (let i = 0; i < recentAmp.length(); i++) {
         ampAvg += recentAmp.getValue(i);
     }
     ampAvg = ampAvg / recentAmp.length();
     console.log(ampAvg);
-    if (ampAvg > 1.7) {
+    if (ampAvg > 2.0) {
         currentShape = false;
         generateBackground();
     }
