@@ -71,7 +71,7 @@ function myFunction () {
 }
 
 function draw() {
-    if (curveDistance < .2) {
+    if (curveDistance < 1) {
         if (currentShape == true) {
             currentShape = false;
         } else {
@@ -291,41 +291,41 @@ function generateCrab(x, y) {
 }
 
 function vertexOfCrab(leftRight) {
-    let multiple = leftRight * curveDistance;
-    vertex(0 * multiple, -4.75 * multiple);
-    vertex(-1.5 * multiple, -4.75 * multiple);
-    vertex(-3.5 * multiple, -4.5 * multiple);
-    vertex(-5 * multiple, -6.75 * multiple);
-    vertex(-4.75 * multiple, -4.25 * multiple);
-    vertex(-6 * multiple, -4 * multiple);
-    vertex(-7.5 * multiple, -6 * multiple);
-    vertex(-7.25 * multiple, -3.75 * multiple);
-    vertex(-8 * multiple, -3.5 * multiple);
-    vertex(-9.5 * multiple, -5.5 * multiple);
-    vertex(-9 * multiple, -3.25 * multiple);
-    vertex(-9.75 * multiple, -2.5 * multiple);
-    vertex(-10 * multiple, -1 * multiple);
-    vertex(-9.5 * multiple, 1 * multiple);
-    vertex(-8 * multiple, 3 * multiple);
-    vertex(-7 * multiple, 4 * multiple);
-    vertex(-9 * multiple, 6 * multiple);
-    vertex(-10 * multiple, 6 * multiple);
-    vertex(-10.5 * multiple, 6.5 * multiple);
-    vertex(-10.25 * multiple, 8 * multiple);
-    vertex(-9.25 * multiple, 7.25 * multiple);
-    vertex(-9.5 * multiple, 8.75 * multiple);
-    vertex(-8 * multiple, 8.5 * multiple);
-    vertex(-7.5 * multiple, 8 * multiple);
-    vertex(-7.5 * multiple, 7 * multiple);
-    vertex(-6 * multiple, 4.5 * multiple);
-    vertex(-4 * multiple, 5 * multiple);
-    vertex(-4.25 * multiple, 7 * multiple);
-    vertex(-5 * multiple, 7.25 * multiple);
-    vertex(-5 * multiple, 8.25 * multiple);
-    vertex(-4.25 * multiple, 8.75 * multiple);
-    vertex(-3.25 * multiple, 8.25 * multiple);
-    vertex(-3.5 * multiple, 7.25 * multiple);
-    vertex(-3 * multiple, 5.25 * multiple);
-    vertex(-1.5 * multiple, 5.5 * multiple);
-    vertex(0 * multiple, 5.75 * multiple);
+    let multiple = leftRight * curveDistance/2;
+    vertex(0 * multiple, -4.75 * curveDistance / 2);
+    vertex(-1.5 * multiple, -4.75 * curveDistance / 2);
+    vertex(-3.5 * multiple, -4.5 * curveDistance / 2);
+    vertex(-5 * multiple, -6.75 * curveDistance / 2);
+    vertex(-4.75 * multiple, -4.25 * curveDistance / 2);
+    vertex(-6 * multiple, -4 * curveDistance / 2);
+    vertex(-7.5 * multiple, -6 * curveDistance / 2);
+    vertex(-7.25 * multiple, -3.75 * curveDistance / 2);
+    vertex(-8 * multiple, -3.5 * curveDistance / 2);
+    vertex(-9.5 * multiple, -5.5 * curveDistance / 2);
+    vertex(-9 * multiple, -3.25 * curveDistance / 2);
+    vertex(-9.75 * multiple, -2.5 * curveDistance / 2);
+    vertex(-10 * multiple, -1 * curveDistance / 2);
+    vertex(-9.5 * multiple, 1 * curveDistance / 2);
+    vertex(-8 * multiple, 3 * curveDistance / 2);
+    vertex(-7 * multiple, 4 * curveDistance / 2);
+    vertex(-9 * multiple, 6 * curveDistance / 2);
+    vertex(-10 * multiple, 6 * curveDistance / 2);
+    vertex(-10.5 * multiple, 6.5 * curveDistance / 2);
+    vertex(-10.25 * multiple, 8 * curveDistance / 2);
+    vertex(-9.25 * multiple, 7.25 * curveDistance / 2);
+    vertex(-9.5 * multiple, 8.75 * curveDistance / 2);
+    vertex(-8 * multiple, 8.5 * curveDistance / 2);
+    vertex(-7.5 * multiple, 8 * curveDistance / 2);
+    vertex(-7.5 * multiple, 7 * curveDistance / 2);
+    vertex(-6 * multiple, 4.5 * curveDistance / 2);
+    vertex(-4 * multiple, 5 * curveDistance / 2);
+    vertex(-4.25 * multiple, 7 * curveDistance / 2);
+    vertex(-5 * multiple, 7.25 * curveDistance / 2);
+    vertex(-5 * multiple, 8.25 * curveDistance / 2);
+    vertex(-4.25 * multiple, 8.75 * curveDistance / 2);
+    vertex(-3.25 * multiple, 8.25 * curveDistance / 2);
+    vertex(-3.5 * multiple, 7.25 * curveDistance / 2);
+    vertex(-3 * multiple, 5.25 * curveDistance / 2);
+    vertex(-1.5 * multiple, 5.5 * curveDistance / 2);
+    vertex(0 * multiple, 5.75 * curveDistance / 2);
 }
