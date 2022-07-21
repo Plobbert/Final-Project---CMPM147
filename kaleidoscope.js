@@ -3,6 +3,7 @@ let verticalDistance, horizontalDistance, pureDistance, curveDistance, curveDist
 let radiatingSquares = new Queue();
 let radiatingColors = new Queue();
 let wiggles = new Queue();
+let wiggleAngles = new Queue();
 let red, green, blue;
 let timer = 60;
 let c;
@@ -129,10 +130,13 @@ function draw() {
 }
 
 function generateBackground() {
-    if (random(0, 10) > 8) {
+    console.log('wumbo jumbo');
+    if (random(0, 10) > 9) {
         let xToDraw = new Queue();
         xToDraw.enqueue(0);
         wiggles.enqueue(xToDraw);
+        let rotation = random(0, 360);
+        wiggleAngles.enqueue(rotation);
     }
     push();
     strokeWeight(10);
@@ -145,25 +149,24 @@ function generateBackground() {
         console.log(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1));
         if (wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1) > 2000) {
             wiggles.dequeue();
+            wiggleAngles.dequeue();
         }
         if (wiggles.getValue(i).length() == 50) {
+            push();
+            rotate(wiggleAngles.getValue(i));
+            calculateTranslation(wiggleAngles.getValue(i));
             for (let j = 0; j < 50; j++) {
-                push();
-                let rotation = random(0, 360);
-                rotate(rotation);
-                calculateTranslation(rotation);
                 beginShape();
                 vertex(wiggles.getValue(i).getValue(j), sin(wiggles.getValue(i).getValue(j)));
                 endShape(CLOSE);
-                pop();
-                wiggles.getValue(i).dequeue();
-                wiggles.getValue(i).enqueue(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1)+ 1);
             }
+            pop();
+            wiggles.getValue(i).dequeue();
+            wiggles.getValue(i).enqueue(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1) + 1);
         } else {
             push();
-            let rotation = random(0, 360);
-            rotate(rotation);
-            calculateTranslation(rotation);
+            rotate(wiggleAngles.getValue(i));
+            calculateTranslation(wiggleAngles.getValue(i));
             stroke(120, 120, 120);
             strokeWeight(strokeSize * 5);
             beginShape();
