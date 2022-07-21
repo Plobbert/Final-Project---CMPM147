@@ -191,9 +191,9 @@ function calculateTranslation(angle) {
         translate(random(-width / 2, width / 2), random(height / 2, height + height / 2));
     } else if (angle < 180) {
         //translate(random(width / 2, width + width / 2), random(height / 2, height + height / 2));
-        translate(width/2, height/2);
-    } else if (angle < 270) {
         translate(random(width / 2, width + width / 2), random(-height / 2, height / 2));
+    } else if (angle < 270) {
+        translate(width / 2, height / 2);
     } else {
         translate(random(-width / 2, width / 2), random(-height / 2, height / 2));
     }
