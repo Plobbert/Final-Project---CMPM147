@@ -153,6 +153,7 @@ function manageBackground() {
             strokeWeight(strokeSize * 5);
             beginShape();
             for (let j = 0; j < wiggles.getValue(i).length(); j++) {
+                console.log(wiggles.getValue(i).getValue(j) + " " + 100 * sin(.100 * wiggles.getValue(i).getValue(j)));
                 vertex(wiggles.getValue(i).getValue(j), 100 * sin(.100 * wiggles.getValue(i).getValue(j)));
             }
             endShape();
@@ -167,7 +168,7 @@ function manageBackground() {
 }
 
 function generateBackground() {
-    console.log('woop');
+    console.log('waap');
     if (random(0, 10) > 9.2) {
         let xToDraw = new Queue();
         xToDraw.enqueue(0);
