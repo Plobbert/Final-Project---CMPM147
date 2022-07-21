@@ -71,7 +71,7 @@ function myFunction () {
 }
 
 function draw() {
-    if (curveDistance < 1) {
+    if (curveDistance < 5) {
         if (currentShape == true) {
             currentShape = false;
         } else {
