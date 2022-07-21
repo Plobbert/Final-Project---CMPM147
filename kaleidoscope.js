@@ -134,8 +134,10 @@ function generateBackground() {
         let xToDraw = new Queue();
         xToDraw.enqueue(0);
         wiggles.enqueue(xToDraw);
+        console.log(wiggles[0] + ' oop');
     }
     for (let i = 0; i < wiggles.length(); i++) {
+        console.log(wiggles[i]);
         if (wiggles[i].length() == 50) {
             for (let j = 0; j < 50; j++) {
                 push();
