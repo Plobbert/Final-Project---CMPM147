@@ -148,11 +148,11 @@ function manageBackground() {
             push();
             rotate(wiggleAngles.getValue(i));
             calculateTranslation(wiggleAngles.getValue(i));
-            console.log('WIGGLE ' + wiggleAngles.getValue(i) + ' X ' + wiggles.getValue(i).getValue(j) + ' Y ' + sin(wiggles.getValue(i).getValue(j)));
             stroke(255, 0, 0);
             strokeWeight(strokeSize * 5);
             beginShape();
             for (let j = 0; j < wiggles.getValue(i).length(); j++) {
+                console.log('WIGGLE ' + wiggleAngles.getValue(i) + ' X ' + wiggles.getValue(i).getValue(j) + ' Y ' + sin(wiggles.getValue(i).getValue(j)));
                 vertex(wiggles.getValue(i).getValue(j), sin(wiggles.getValue(i).getValue(j)));
             }
             endShape();
