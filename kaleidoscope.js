@@ -103,6 +103,7 @@ function draw() {
     horizontalDistance = mouseX - width / 2;
     pureDistance = sqrt(pow(mouseX - width / 2, 2) + pow(mouseY - height / 2, 2));
     angleMode(DEGREES);
+    manageBackground();
     push();
     translate(width / 2, height / 2);
         rotate(verticalDistance);
@@ -123,7 +124,6 @@ function draw() {
     generateStar(-300, -200);
     generateStar(300, 200);
     generateStar(300, -200);
-    manageBackground();
     if (strokeSize > 2.0) {
         generateBackground();
     }
@@ -135,8 +135,9 @@ function manageBackground() {
             push();
             calculateTranslation(wiggleAngles.getValue(i));
             rotate(wiggleAngles.getValue(i));
-            stroke(255, 0, 0);
+            stroke(255, 0, 0, 100);
             strokeWeight(strokeSize * 5);
+            noFill();
             beginShape();
             for (let j = 0; j < 100; j++) {
                 vertex(wiggles.getValue(i).getValue(j), 300 * sin(.500 * wiggles.getValue(i).getValue(j)));
@@ -149,8 +150,9 @@ function manageBackground() {
             push();
             calculateTranslation(wiggleAngles.getValue(i));
             rotate(wiggleAngles.getValue(i));
-            stroke(255, 0, 0);
+            stroke(255, 0, 0, 100);
             strokeWeight(strokeSize * 5);
+            noFill();
             beginShape();
             for (let j = 0; j < wiggles.getValue(i).length(); j++) {
                 vertex(wiggles.getValue(i).getValue(j), 300 * sin(.5 * wiggles.getValue(i).getValue(j)));
