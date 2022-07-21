@@ -133,8 +133,8 @@ function manageBackground() {
     for (let i = 0; i < wiggles.length(); i++) {
         if (wiggles.getValue(i).length() == 50) {
             push();
-            rotate(wiggleAngles.getValue(i));
             calculateTranslation(wiggleAngles.getValue(i));
+            rotate(wiggleAngles.getValue(i));
             stroke(255, 0, 0);
             strokeWeight(strokeSize * 5);
             beginShape();
@@ -147,8 +147,8 @@ function manageBackground() {
             wiggles.getValue(i).enqueue(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1) + 1);
         } else {
             push();
-            rotate(wiggleAngles.getValue(i));
             calculateTranslation(wiggleAngles.getValue(i));
+            rotate(wiggleAngles.getValue(i));
             stroke(255, 0, 0);
             strokeWeight(strokeSize * 5);
             beginShape();
@@ -168,7 +168,7 @@ function manageBackground() {
 }
 
 function generateBackground() {
-    console.log('waap');
+    console.log('weep');
     if (random(0, 10) > 9.2) {
         let xToDraw = new Queue();
         xToDraw.enqueue(0);
