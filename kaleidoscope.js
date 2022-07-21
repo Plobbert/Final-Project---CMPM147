@@ -9,7 +9,6 @@ let timer = 60;
 let c;
 let strokeSize = 1;
 let amp;
-console.log('test');
 
 function Queue(array) {
     this.array = [];
@@ -60,7 +59,6 @@ function setup() {
     blue = 120;
     green = 120;
     amp = new p5.Amplitude();
-    console.log("test1");
     createP("Move the mouse to generate new patterns.");
 }
 
@@ -135,12 +133,12 @@ function manageBackground() {
             push();
             calculateTranslation(wiggleAngles.getValue(i));
             rotate(wiggleAngles.getValue(i));
-            stroke(255, 0, 0, 100);
+            stroke(177, 156, 217, 70);
             strokeWeight(strokeSize * 5);
             noFill();
             beginShape();
             for (let j = 0; j < 100; j++) {
-                vertex(wiggles.getValue(i).getValue(j), 300 * sin(.500 * wiggles.getValue(i).getValue(j)));
+                vertex(wiggles.getValue(i).getValue(j), 200 * sin(.500 * wiggles.getValue(i).getValue(j)));
             }
             endShape();
             pop();
@@ -150,12 +148,12 @@ function manageBackground() {
             push();
             calculateTranslation(wiggleAngles.getValue(i));
             rotate(wiggleAngles.getValue(i));
-            stroke(255, 0, 0, 100);
+            stroke(177, 156, 217, 70);
             strokeWeight(strokeSize * 5);
             noFill();
             beginShape();
             for (let j = 0; j < wiggles.getValue(i).length(); j++) {
-                vertex(wiggles.getValue(i).getValue(j), 300 * sin(.5 * wiggles.getValue(i).getValue(j)));
+                vertex(wiggles.getValue(i).getValue(j), 200 * sin(.5 * wiggles.getValue(i).getValue(j)));
             }
             endShape();
             pop();
@@ -170,7 +168,7 @@ function manageBackground() {
 
 function generateBackground() {
     console.log('weep');
-    if (random(0, 10) > 9.2) {
+    if (random(0, 10) > 9.4) {
         let xToDraw = new Queue();
         xToDraw.enqueue(0);
         wiggles.enqueue(xToDraw);
