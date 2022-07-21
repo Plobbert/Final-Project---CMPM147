@@ -158,7 +158,9 @@ function generateBackground() {
             rotate(rotation);
             calculateTranslation(rotation);
             beginShape();
-            vertex(wiggles.getValue(i).getValue(j), sin(wiggles.getValue(i).getValue(j)));
+            for (let j = 0; j < wiggles.getValue(i).length(); j++) {
+                vertex(wiggles.getValue(i).getValue(j), sin(wiggles.getValue(i).getValue(j)));
+            }
             endShape(CLOSE);
             pop();
             wiggles.getValue(i).enqueue(wiggles.getValue(0) + 1);
