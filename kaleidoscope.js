@@ -140,11 +140,11 @@ function draw() {
         ampAvg += recentAmp.getValue(i);
     }
     ampAvg = ampAvg / recentAmp.length();
-    if (ampAvg > 2.0) {
+    if (ampAvg > 1.7) {
         currentShape = false;
         generateBackground();
     }
-    if (ampAvg < 1.5) {
+    if (ampAvg < 1.4) {
         currentShape = true;
     }
 }
