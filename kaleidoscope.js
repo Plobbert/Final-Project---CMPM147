@@ -76,10 +76,6 @@ function draw() {
     for (let i = 0; i < radiatingSquares.length(); i++) {
         radiatingSquares.updateValue(i);
     }
-    manageBackground();
-    if (strokeSize > 2.0) {
-        generateBackground();
-    }
     red += random(-10, 10);
     green += random(-10, 10);
     blue += random(-10, 10);
@@ -127,6 +123,10 @@ function draw() {
     generateStar(-300, -200);
     generateStar(300, 200);
     generateStar(300, -200);
+    manageBackground();
+    if (strokeSize > 2.0) {
+        generateBackground();
+    }
 }
 
 function manageBackground() {
