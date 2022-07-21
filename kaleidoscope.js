@@ -131,15 +131,15 @@ function draw() {
 
 function manageBackground() {
     for (let i = 0; i < wiggles.length(); i++) {
-        if (wiggles.getValue(i).length() == 50) {
+        if (wiggles.getValue(i).length() == 100) {
             push();
             calculateTranslation(wiggleAngles.getValue(i));
             rotate(wiggleAngles.getValue(i));
             stroke(255, 0, 0);
             strokeWeight(strokeSize * 5);
             beginShape();
-            for (let j = 0; j < 50; j++) {
-                vertex(wiggles.getValue(i).getValue(j), 100 * sin(.100 * wiggles.getValue(i).getValue(j)));
+            for (let j = 0; j < 100; j++) {
+                vertex(wiggles.getValue(i).getValue(j), 300 * sin(.500 * wiggles.getValue(i).getValue(j)));
             }
             endShape();
             pop();
@@ -153,8 +153,7 @@ function manageBackground() {
             strokeWeight(strokeSize * 5);
             beginShape();
             for (let j = 0; j < wiggles.getValue(i).length(); j++) {
-                console.log(wiggles.getValue(i).getValue(j) + " " + 100 * sin(.100 * wiggles.getValue(i).getValue(j)));
-                vertex(wiggles.getValue(i).getValue(j), 100 * sin(.100 * wiggles.getValue(i).getValue(j)));
+                vertex(wiggles.getValue(i).getValue(j), 300 * sin(.5 * wiggles.getValue(i).getValue(j)));
             }
             endShape();
             pop();
