@@ -76,7 +76,7 @@ function draw() {
     for (let i = 0; i < radiatingSquares.length(); i++) {
         radiatingSquares.updateValue(i);
     }
-    console.log(strokeSize);
+    manageBackground();
     if (strokeSize > 2.0) {
         generateBackground();
     }
@@ -129,22 +129,7 @@ function draw() {
     generateStar(300, -200);
 }
 
-function generateBackground() {
-    console.log('wumbo jumbo');
-    if (random(0, 10) > 9) {
-        let xToDraw = new Queue();
-        xToDraw.enqueue(0);
-        wiggles.enqueue(xToDraw);
-        let rotation = random(0, 360);
-        wiggleAngles.enqueue(rotation);
-    }
-    push();
-    strokeWeight(10);
-    stroke(255, 0, 0);
-    beginShape();
-    vertex(random(0, width), random(0, height));
-    endShape(CLOSE);
-    pop();
+function manageBackground() {
     for (let i = 0; i < wiggles.length(); i++) {
         console.log(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1));
         if (wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1) > 2000) {
@@ -178,6 +163,24 @@ function generateBackground() {
             wiggles.getValue(i).enqueue(wiggles.getValue(i).getValue(wiggles.getValue(i).length() - 1) + 1);
         }
     }
+}
+
+function generateBackground() {
+    console.log('clumbo jumbo');
+    if (random(0, 10) > 9) {
+        let xToDraw = new Queue();
+        xToDraw.enqueue(0);
+        wiggles.enqueue(xToDraw);
+        let rotation = random(0, 360);
+        wiggleAngles.enqueue(rotation);
+    }
+    push();
+    strokeWeight(10);
+    stroke(255, 0, 0);
+    beginShape();
+    vertex(random(0, width), random(0, height));
+    endShape(CLOSE);
+    pop();
 }
 
 function calculateTranslation(angle) {
