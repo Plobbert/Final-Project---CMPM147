@@ -134,6 +134,13 @@ function generateBackground() {
         xToDraw.enqueue(0);
         wiggles.enqueue(xToDraw);
     }
+    push();
+    strokeWeight(10);
+    stroke(255, 0, 0);
+    beginShape();
+    vertex(random(0, width), random(0, height));
+    endShape(CLOSE);
+    pop();
     for (let i = 0; i < wiggles.length(); i++) {
         console.log(wiggles.getValue(i).getValue(wiggles.getValue(i).length()));
         if (wiggles.getValue(i).length() == 50) {
