@@ -157,6 +157,8 @@ function generateBackground() {
             let rotation = random(0, 360);
             rotate(rotation);
             calculateTranslation(rotation);
+            stroke(120, 120, 120);
+            strokeWeight(strokeSize * 5);
             beginShape();
             for (let j = 0; j < wiggles.getValue(i).length(); j++) {
                 vertex(wiggles.getValue(i).getValue(j), sin(wiggles.getValue(i).getValue(j)));
