@@ -11,7 +11,7 @@ let strokeSize = 1;
 let amp;
 let ampAvg = 0;
 let currentShape = true;
-let cnv;
+let cnv, p1, p2;
 
 function Queue(array) {
     this.array = [];
@@ -57,8 +57,10 @@ function setup() {
     blue = 120;
     green = 120;
     amp = new p5.Amplitude();
-    createP("Click 'Play Song', then move the mouse to interact with the rave.");
-    createP("WARNING: THE RAVE WILL CONTAIN FLASHING BRIGHT COLORS AND PATTERNS (depending on how much you move your mouse). IF YOU ARE SENSITIVE TO THESE THINGS, START THE RAVE AT YOUR OWN DISCRETION");
+    p1 = createP("Click 'Play Song', then move the mouse to interact with the rave.");
+    p2 = createP("WARNING: THE RAVE WILL CONTAIN FLASHING BRIGHT COLORS AND PATTERNS (depending on how much you move your mouse). IF YOU ARE SENSITIVE TO THESE THINGS, START THE RAVE AT YOUR OWN DISCRETION");
+    p1.parent("firstText");
+    p2.parent("secondText");
 }
 
 function myFunction () {
