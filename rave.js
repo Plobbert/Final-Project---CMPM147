@@ -1,4 +1,3 @@
-let flock;
 let verticalDistance, horizontalDistance, pureDistance, curveDistance, curveDistance2;
 let radiatingSquares = new Queue();
 let radiatingColors = new Queue();
@@ -18,14 +17,10 @@ function Queue(array) {
     if (array) this.array = array;
 }
 
-// Add Get Buffer property to object
-// constructor which slices the array
 Queue.prototype.getBuffer = function () {
     return this.array.slice();
 }
 
-// Add isEmpty properties to object constructor
-// which returns the length of the array
 Queue.prototype.isEmpty = function () {
     return this.array.length == 0;
 }
@@ -43,8 +38,6 @@ Queue.prototype.updateValue = function (i) {
     return this.array[i];
 }
 
-// Add Push property to object constructor
-// which push elements to the array
 Queue.prototype.enqueue = function (value) {
     this.array.push(value);
 }
@@ -62,14 +55,13 @@ function setup() {
     blue = 120;
     green = 120;
     amp = new p5.Amplitude();
-    createP("Move the mouse to generate new patterns.");
+    createP("Click 'Play Song', then move the mouse to interact with the rave.");
 }
 
 function myFunction () {
     if (!mySound.isPlaying()) {
         mySound.play();
     }
-    //or another function to use audio source
 }
 
 function draw() {
