@@ -153,7 +153,7 @@ function manageBackground() {
             push();
             calculateTranslation(wiggleAngles.getValue(i));
             rotate(wiggleAngles.getValue(i));
-            stroke(177, 156, 217, 70);
+            stroke(169, 8, 181, 70);
             strokeWeight(strokeSize * 5);
             noFill();
             beginShape();
@@ -168,7 +168,7 @@ function manageBackground() {
             push();
             calculateTranslation(wiggleAngles.getValue(i));
             rotate(wiggleAngles.getValue(i));
-            stroke(177, 156, 217, 70);
+            stroke(169, 8, 181, 70);
             strokeWeight(strokeSize * 5);
             noFill();
             beginShape();
