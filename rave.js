@@ -74,7 +74,7 @@ function myFunction () {
 function draw() {
     strokeSize = amp.getLevel() * 10;
     if (!mySound.isPlaying()) {
-        waitingScene();
+        waitingScreen();
     }
     recentAmp.enqueue(strokeSize);
     if (recentAmp.length() == 10) {
