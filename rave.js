@@ -11,6 +11,7 @@ let strokeSize = 1;
 let amp;
 let ampAvg = 0;
 let currentShape = true;
+let cnv;
 
 function Queue(array) {
     this.array = [];
@@ -50,12 +51,14 @@ function preload() {
     mySound = loadSound('./assets/crab.mp3');
 }
 function setup() {
-    createCanvas(1080, 720);
+    cnv = createCanvas(1080, 720);
+    cnv.parent("container")
     red = 120;
     blue = 120;
     green = 120;
     amp = new p5.Amplitude();
-    createP("Click 'Play Song', then move the mouse to interact with the rave. \n(WARNING: THE RAVE WILL CONTAIN FLASHING BRIGHT COLORS AND PATTERNS (depending on how much you move your mouse). IF YOU ARE SENSITIVE TO THESE THINGS, START THE RAVE AT YOUR OWN DISCRETION)");
+    createP("Click 'Play Song', then move the mouse to interact with the rave.");
+    createP("WARNING: THE RAVE WILL CONTAIN FLASHING BRIGHT COLORS AND PATTERNS (depending on how much you move your mouse). IF YOU ARE SENSITIVE TO THESE THINGS, START THE RAVE AT YOUR OWN DISCRETION");
 }
 
 function myFunction () {
