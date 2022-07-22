@@ -5,7 +5,7 @@ let wiggles = new Queue();
 let wiggleAngles = new Queue();
 let recentAmp = new Queue();
 let waitWorm = new Queue();
-let waitX = 0, waitY = 1;
+let waitX = 3, waitY = 0;
 let red, green, blue;
 let timer = 60;
 let c;
