@@ -264,7 +264,7 @@ function generateStar(x, y) {
 function generateCrab(x, y) {
     push();
     translate(width / 2 + x, height / 2 + y);
-    rotate(curveDistance2);
+    rotate(-curveDistance2);
     noFill();
     stroke(255, 0, 0);
     strokeWeight(3 * strokeSize);
