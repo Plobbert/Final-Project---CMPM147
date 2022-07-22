@@ -73,9 +73,6 @@ function myFunction () {
 
 function draw() {
     strokeSize = amp.getLevel() * 10;
-    if (!mySound.isPlaying()) {
-        waitingScreen();
-    }
     recentAmp.enqueue(strokeSize);
     if (recentAmp.length() == 10) {
         recentAmp.dequeue();
@@ -149,6 +146,9 @@ function draw() {
     }
     if (ampAvg < 1.2) {
         currentShape = true;
+    }
+    if (!mySound.isPlaying()) {
+        waitingScreen();
     }
 }
 
