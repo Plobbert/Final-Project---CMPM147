@@ -4,6 +4,8 @@ let radiatingColors = new Queue();
 let wiggles = new Queue();
 let wiggleAngles = new Queue();
 let recentAmp = new Queue();
+let waitWorm = new Queue();
+let waitX = 0, waitY = 1;
 let red, green, blue;
 let timer = 60;
 let c;
@@ -12,6 +14,7 @@ let amp;
 let ampAvg = 0;
 let currentShape = true;
 let cnv, p1, p2;
+let waitingScreen = true;
 
 function Queue(array) {
     this.array = [];
@@ -66,11 +69,15 @@ function setup() {
 function myFunction () {
     if (!mySound.isPlaying()) {
         mySound.play();
+        waitingScreen = true;
     }
 }
 
 function draw() {
     strokeSize = amp.getLevel() * 10;
+    if (!mySound.isPlaying()) {
+        waitingScene();
+    }
     recentAmp.enqueue(strokeSize);
     if (recentAmp.length() == 10) {
         recentAmp.dequeue();
@@ -145,6 +152,67 @@ function draw() {
     if (ampAvg < 1.2) {
         currentShape = true;
     }
+}
+
+function waitingScreen() {
+    if (waitWorm.length() != 0) {
+        let newX = waitWorm.getValue(waitWorm.length() - 1).X + waitX;
+        let newY = waitWorm.getValue(waitWorm.length() - 1).Y + waitY;
+        if (newX > width) {
+            newX = 0;
+        } else if (newX < 0) {
+            newX = width
+        }
+        if (newY > height) {
+            newY = 0;
+        } else if (newY < 0) {
+            newY = height;
+        }
+        const node = {
+            X: newX,
+            Y: newY
+        }
+        waitWorm.enqueue(node);
+        if (waitWorm.length == 100) {
+            waitWorm.dequeue();
+        }
+        decideWaits();
+    } else {
+        const node = {
+            X: width/2,
+            Y: height/2
+        }
+        waitWorms.enqueue(node);
+    }
+    push();
+    strokeWeight(10);
+    stroke(c);
+    beginShape();
+    for (let i = 0; i < waitWorm.length(); i++) {
+        vertex(waitWorm.getValue(i).X, waitWorm.getValue(i).Y);
+    }
+    endShape();
+    pop();
+}
+
+function decideWaits() {
+    let switching = random(0, 100);
+    let posneg;
+    if (random(0, 100) > 99.5) {
+        posneg = -1;
+    } else {
+        posneg = 1;
+    }
+    if (switching > 99.5) {
+        if (waitX != 0) {
+            waitY = waitX * posneg;
+            waitX = 0;
+        } else {
+            waitX = waitY * posneg;
+            waitY = 0;
+        }
+    }
+    
 }
 
 function manageBackground() {
