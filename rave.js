@@ -74,9 +74,7 @@ function myFunction () {
 
 function draw() {
     strokeSize = amp.getLevel() * 10;
-    console.log(strokeSize + 'o_o');
     recentAmp.enqueue(strokeSize);
-    console.log(recentAmp.getValue(0) + ':O');
     if (recentAmp.length() == 10) {
         recentAmp.dequeue();
     }
@@ -143,7 +141,6 @@ function draw() {
         ampAvg += recentAmp.getValue(i);
     }
     ampAvg = ampAvg / recentAmp.length();
-    console.log('TESTING1');
     if (ampAvg > 2.1) {
         currentShape = false;
         generateBackground();
@@ -193,7 +190,6 @@ function manageBackground() {
 }
 
 function generateBackground() {
-    console.log('weep');
     if (random(0, 10) > 9.4) {
         let xToDraw = new Queue();
         xToDraw.enqueue(0);
@@ -201,13 +197,6 @@ function generateBackground() {
         let rotation = random(0, 360);
         wiggleAngles.enqueue(rotation);
     }
-    push();
-    strokeWeight(10);
-    stroke(255, 0, 0);
-    beginShape();
-    vertex(width/2, height/2);
-    endShape(CLOSE);
-    pop();
 }
 
 function calculateTranslation(angle) {
@@ -236,22 +225,12 @@ function generateRadiation() {
 function calculateDistanceFromCurve() {
     for (let i = 0; i < width; i++) {
         let distance = dist(mouseX, mouseY, i, curveFunction(i));
-        push();
-        beginShape();
-        vertex(i, curveFunction(i));
-        endShape(CLOSE);
-        pop();
         if (distance < curveDistance) {
             curveDistance = distance;
         }
     }
     for (let i = 0; i < width; i++) {
         let distance = dist(mouseX, mouseY, i, height - curveFunction(i));
-        push();
-        beginShape();
-        vertex(i, height - curveFunction(i));
-        endShape(CLOSE);
-        pop();
         if (distance < curveDistance2) {
             curveDistance2 = distance;
         }
