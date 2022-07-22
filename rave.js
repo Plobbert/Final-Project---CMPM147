@@ -180,7 +180,7 @@ function waitingScreen() {
             X: width/2,
             Y: height/2
         }
-        waitWorms.enqueue(node);
+        waitWorm.enqueue(node);
     }
     push();
     strokeWeight(10);
