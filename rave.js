@@ -171,7 +171,7 @@ function waitingScreen() {
             Y: newY
         }
         waitWorm.enqueue(node);
-        if (waitWorm.length == 100) {
+        if (waitWorm.length() == 100) {
             waitWorm.dequeue();
         }
         decideWaits();
@@ -185,11 +185,11 @@ function waitingScreen() {
     push();
     strokeWeight(10);
     stroke(255, 255, 255);
-    beginShape();
     for (let i = 0; i < waitWorm.length(); i++) {
+        beginShape();
         vertex(waitWorm.getValue(i).X, waitWorm.getValue(i).Y);
+        endShape();
     }
-    endShape();
     pop();
 }
 
@@ -203,7 +203,9 @@ function decideWaits() {
         if (waitX != 0) {
             waitY = waitX * posneg;
             waitX = 0;
-        } else if (switching < .5){
+        }
+    } else if (switching < .5) {
+        if (waitY != 0) {
             waitX = waitY * posneg;
             waitY = 0;
         }
