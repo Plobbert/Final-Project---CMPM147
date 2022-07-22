@@ -143,7 +143,7 @@ function draw() {
         ampAvg += recentAmp.getValue(i);
     }
     ampAvg = ampAvg / recentAmp.length();
-    console.log(ampAvg);
+    console.log('TESTING');
     if (ampAvg > 2.1) {
         currentShape = false;
         generateBackground();
