@@ -74,7 +74,9 @@ function myFunction () {
 
 function draw() {
     strokeSize = amp.getLevel() * 10;
+    console.log(strokeSize + 'o_o');
     recentAmp.enqueue(strokeSize);
+    console.log(recentAmp.getValue(0) + ':O');
     if (recentAmp.length() == 10) {
         recentAmp.dequeue();
     }
