@@ -184,7 +184,7 @@ function waitingScreen() {
     }
     push();
     strokeWeight(10);
-    stroke(c);
+    stroke(255, 255, 255);
     beginShape();
     for (let i = 0; i < waitWorm.length(); i++) {
         vertex(waitWorm.getValue(i).X, waitWorm.getValue(i).Y);
