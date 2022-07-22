@@ -14,7 +14,6 @@ let amp;
 let ampAvg = 0;
 let currentShape = true;
 let cnv, p1, p2;
-let waitingScreen = true;
 
 function Queue(array) {
     this.array = [];
@@ -69,7 +68,6 @@ function setup() {
 function myFunction () {
     if (!mySound.isPlaying()) {
         mySound.play();
-        waitingScreen = true;
     }
 }
 
