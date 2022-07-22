@@ -195,17 +195,15 @@ function waitingScreen() {
 
 function decideWaits() {
     let switching = random(0, 100);
-    let posneg;
+    let posneg = 1;
     if (random(0, 100) > 99.5) {
         posneg = -1;
-    } else {
-        posneg = 1;
     }
     if (switching > 99.5) {
         if (waitX != 0) {
             waitY = waitX * posneg;
             waitX = 0;
-        } else {
+        } else if (switching < .5){
             waitX = waitY * posneg;
             waitY = 0;
         }
